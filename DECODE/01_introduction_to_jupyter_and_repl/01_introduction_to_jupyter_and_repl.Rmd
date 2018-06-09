@@ -1,0 +1,164 @@
+
+# Introduction to R & Jupyter Notebooks
+# Introduction to Jupyter & the Notebook REPL
+
+Matthew D. Turner, PhD  
+Georgia State University
+
+Some rights reserved: [cc by-nc-sa](https://creativecommons.org/licenses/by-nc-sa/4.0/) See bottom of document for details.
+***
+This workshop is intended as a brief introduction to:
+
++ The R Language
++ The Jupyter Scientific Notebook System
+
+The emphasis is on the R language, but as the class is delivered in Jupyter notebooks, we will cover the basics of this system, as well. Both R and Jupyter are systems that are too big to be covered in one class, so this is really just enough to get you started with either of them. 
+
+For more information on Jupyter see the [Jupyter Project website](http://jupyter.org/). For more information on using Jupyter notebooks for research and teaching, see [HERE](https://jupyter.brynmawr.edu/services/public/dblank/Jupyter%20Notebook%20Users%20Manual.ipynb) (note that this page is a little out of date but still very useful).
+
+For more on R, see the [R Project website](https://www.r-project.org/).
+***
+
+## 1.1 Jupyter
+
+We will start with Jupyter so that you can work with it today.
+
+You are currently looking at a **Jupyter Notebook for R**. This is an easy to use system for working with scientific computing. Many of you will prefer to use [RStudio](https://www.rstudio.com/products/rstudio/) on your own computers. However, when working in a networked environment, Jupyter is better for sharing. (There is a web-based version of RStudio, however it is not an affordable option for GSU.) If you would like to use Jupyter on your own computer it is _relatively_ easy to set up. This will not be discussed today, please contact the workshop leader for more information.
+
+It is important to note that R is a computer language, _so while interacting with R notebooks in Jupyter will feel different from the workflow in RStudio, the **commands are identical**_. 
+
+## 1.2 Cells (The Essential Feature of Jupyter)
+
+Jupyter is organized into **cells** which are little blocks of **code** or **formatted text**. The code cells have output. The output of code cells is either statistical results or graphics. You get this output when you **run** the cell.
+
+What you are reading right now is a **formatted text** cell. Below this is a **code** cell that is empty. 
+
+Let's try using it:
+
++ Double-click on the cell below this
++ Type `2 + 2` (or some other numbers of interest)
++ Then press **shift-enter** (shift and the enter or return key on your keyboard; **remember this, you use it constantly!**) this key combination is how to **run a cell**.
+
+Note a couple of things:
+
++ The result is printed just below the cell
++ The cell gets a **number** showing the order in which it was run (in this case 1)
+
+If you were to click on the cell again, you could change your code and then press shift-enter to run it again. The results will update to show the new result and the number of the cell will increment to the next number. **Try it!**
+
+> **Important Note** Throughout the rest of these notebooks we will often refer to "running a cell" which simply means selecting it and then pressing shift-enter. In this workshop you will need to run all of the code cells in each notebook, in order, to see the examples and do the exercises. Don't skip any cells!
+
+Remember that: **Run every cell**.
+***
+In the empty cell below:
++ Click on the cell to make it active -- the border of the cell will turn green. This is **edit mode** where you can type in the cell.
++ Then press the escape key ('esc') on your keyboard -- the border of the cell turns blue. This is **command mode** where you cannot type into the cell, but instead issue single key commands.
++ Press the 'h' key on your keyboard. This will bring up the keyboard shortcut help menu. (It scrolls!) The keys listed for "command mode" are things you can press after pressing escape. These do many useful things!
++ You can either press escape again or click the 'x' in the upper right of the help menu to close it.
+
+### Jupyter's Two Modes
+
+Jupyter has two modes: **command mode** and **edit mode**
+
++ **Command Mode**
+  + Pressing escape when inside of a cell turns on command mode
+  + When in command mode, keystrokes will do various operations, usually things that affect whole cells (like creating new cells, changing the type of cell, merging cells, etc.)
+  + In command mode, pressing 'h' brings up the help from **any** cell
+  + If you are in command mode, press the "enter" (or "return") key to go to edit mode
++ **Edit Mode**
+  + Double-clicking a cell turns on edit mode
+  + Edit mode is where you can type code (or text) into the cell
+  + There are special keystrokes available in edit mode, most of these require pressing special key combinations using the control (ctrl; or cmd on the Mac) or shift keys
+  + If you are in edit mode, pressing escape switches to command mode
+
+### Code Cell Example
+Code can be simple or complicated. The following is an example to plot a sine and cosine function. **Don't worry if you don't understand it yet, we will discuss more as we go!** All we want to do now is see the relationship between code and results.
+
+Select the cell below this and press shift-enter to see the result.
+
+
+```R
+options(repr.plot.width=5, repr.plot.height=4) # Set plot height and width
+x = seq(-pi, pi, by=0.01) 
+plot(x, sin(x), type="l", col="red")
+lines(x, cos(x), type="l", col="purple")
+legend(0, -0.5, legend=c("Sine", "Cosine"), col=c("red", "purple"), lty=1, 
+       y.intersp=2, cex=0.75, box.lty = 0)
+```
+
+
+![png](output_4_0.png)
+
+
+We will cover in some detail the `options`, `seq`, and `plot` commands in the workshop. By the end of that, you will be well equipped to figure out things like `lines` and `legend` on your own.
+
+### Text and Code Together in Jupyter
+
+Another great feature of Jupyter notebooks is that they allow the mixing of text, data, and computer code. Everything in this notebook, including **this cell's text**, is editable. If you would like to see the raw form of this typeset text, just _double_ click inside of this cell. That will turn on edit mode and show you the markup language. Press shift-enter to turn the cell back into formatted text. The typesetting is done in [markdown](https://jupyter-notebook.readthedocs.io/en/stable/examples/Notebook/Working%20With%20Markdown%20Cells.html) a **simple code for marking up text** with things like: headings, web links, lists, computer code, and so on. It also supports typesetting math in LaTeX (if you are familiar with that). 
+
+For example: writing $C = 2 \pi r$ or $$e^x=\sum_{i=0}^\infty \frac{1}{i!}x^i$$ is fairly easy.
+
+Cells are executed (code is run, text is formatted) when you press shift-enter while within the cell. Just click on the cell to make it the active cell (or double-click to make it active and editable if it is a text cell) and that will be the cell that gets executed when you press shift-enter.
+
+### Graphics
+
+Scientific graphics are included in Jupyter R notebooks by running the required code in R to make the figures. They will simply appear as output for the code. Jupyter may also include images or other figures by inclusion as you would in a normal webpage:
+
+<img width=30% src="./lolcat_orly.jpg" />
+
+With all of these features, Jupyter makes an excellent laboratory notebook!
+***
+Make the cell below the active cell, then press escape to get into command mode. Then press 'a' or 'b' a couple of times. See what happens.
+
+In command mode, pressing 'a' makes a new cell **above** the current one and pressing 'b' makes a new cell **below** the current one. When working on your own notebooks this is needed on a regular basis. If you want to **delete** a cell, click on the cell, press 'escape' to enter command mode, and press the 'd' key _twice_.
+
+When new cells are created they are code cells by default. To make them into formatted text cells, press escape to enter command mode, and then 'm" (short for [markdown](http://jupyter-notebook.readthedocs.io/en/stable/examples/Notebook/Working%20With%20Markdown%20Cells.html), the special language for entering formatted text). To make a text cell back into a code cell, press 'y' (also in command mode).
+
+***
+## 1.3 Input & Output
+Execute the cell below this and interpret the output. Hint, if you can use a simple calculator you are in good shape:
+
+
+```R
+1 + 2
+10*33
+14 - 7
+1/2
+```
+
+The main thing to note here is that each line of code gets evaluated and the corresponding result appears on a line of output. **In the same order!**
+
+### Persistence
+
+Another feature of Jupyter is that variables defined in one cell will be available for use in later cells. In the cell below this we define a variable called `a` which has the value `10`. Make sure to run this cell before moving on!
+
+
+```R
+a = 10
+```
+
+In the cell below this one, we use the value of `a` to do a calculation:
+
+
+```R
+a + 2
+```
+
+***
+In the next two cells try the following calculation:
+1. Pick a three-digit number whose digits are decreasing from left to right. Like 952. 
+2. Then reverse the digits to create a new number, and subtract this number from the original number. do this in the first empty cell below. 
+3. With the **resulting number**, add it to the reverse of itself. Do this in the second empty cell below.
+
+What did you get?
+
+If you got 1089, then you followed the instructions. If you got something else, I am not sure what to tell you. 
+
+However, as long as you were able to enter a calculation (any calculation) into the cells, press shift-enter to get the results, and read the output, you are ready to proceed to the next notebook and begin learning R.
+***
+Version 1.0  
+2018.06.06  
+
+To contact the author, please email [mturner46@gsu.edu](mailto:mturner46@gsu.edu). Please contact me with recommendations for improvement or if you find any errors. This work may be adapted for any non-commercial purpose within the bounds of the license.
+
+<a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/"><img alt="Creative Commons License" style="border-width:0" src="https://i.creativecommons.org/l/by-nc-sa/4.0/88x31.png" /></a><br />This work is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/">Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International License</a>.
